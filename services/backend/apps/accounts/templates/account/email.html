@@ -1,0 +1,89 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
+
+{% block content %}
+<h1 class="title">{% trans "E-mail Addresses" %}</h1>
+
+{% if user.emailaddress_set.all %}
+<p class="content">{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+
+<form action="{% url 'account_email' %}" class="email_list" method="post">
+    {% csrf_token %}
+
+        <table class="table">
+            <tbody>
+                {% for emailaddress in user.emailaddress_set.all %}
+                <tr>
+                    <td><input id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/></td>
+                    <td>{{ emailaddress.email }}</td>
+                    <td class="has-text-centered">
+                        {% if emailaddress.primary %}
+                        <span class="tag is-primary">{% trans "Primary" %}</span>
+                        {% endif %}
+                    </td>
+                    <td class="has-text-centered">
+                        {% if emailaddress.verified %}
+                        <span class="tag is-success">{% trans "Verified" %}</span>
+                        {% else %}
+                        <span class="tag is-warning">{% trans "Unverified" %}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-small is-primary" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
+            </div>
+            <div class="control">
+              <button class="button is-small is-danger" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+            </div>
+            <div class="control">
+              <button class="button is-small is-text" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
+            </div>
+        </div>
+
+</form>
+
+{% else %}
+
+<p class="content"><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</p>
+
+{% endif %}
+
+
+    <h2 class="title is-4">{% trans "Add E-mail Address" %}</h2>
+
+    <form method="post" action="{% url 'account_email' %}" class="add_email">
+        {% csrf_token %}
+        {% include "core/forms/bulma.html" %}
+        <div class="field">
+            <div class="control">
+                <button name="action_add" class="button is-primary" type="submit">{% trans "Add E-mail" %}</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+
+{% block extra_body %}
+<script type="text/javascript">
+(function() {
+  var message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
+  var actions = document.getElementsByName('action_remove');
+  if (actions.length) {
+    actions[0].addEventListener("click", function(e) {
+      if (! confirm(message)) {
+        e.preventDefault();
+      }
+    });
+  }
+})();
+</script>
+{% endblock %}
