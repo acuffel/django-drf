@@ -1,0 +1,8 @@
+{
+    "python.analysis.extraPaths": [
+        "/code/services/backend/apps",
+    ],
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#7f1d83"
+    }
+}

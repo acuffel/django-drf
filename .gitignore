@@ -1,0 +1,7 @@
+.tox/
+media/
+static/
+venv/
+.coverage
+db.sqlite3
+STDOUT_warnings.txt
