@@ -1,0 +1,26 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Profile" %}{% endblock %}
+
+{% block content %}
+<h1 class="title">{% trans "Profile" %} - <span class="is-italic">{{ user.username }}</span></h1>
+
+{% if user.get_avatar_url %}
+<figure class="image is-128x128">
+    <img class="is-rounded" src="{{ user.get_avatar_url }}">
+</figure>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    {% include "core/forms/bulma.html" %}
+
+    <div class="field">
+        <div class="control">
+            <button class="button is-primary" type="submit">{% trans "Save" %}</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

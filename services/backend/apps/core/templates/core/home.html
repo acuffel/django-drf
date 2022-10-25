@@ -1,0 +1,33 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block page_content %}
+<section class="hero is-large">
+    <div class="hero-body">
+        <p class="title">
+            {{ request.site.name }}
+        </p>
+        <p class="subtitle">
+            {{ request.site.sitecustomization.tagline }}
+        </p>
+        <p class="content">
+            {{ request.site.sitecustomization.description }}
+        </p>
+        {% if not user.is_authenticated %}
+        <div class="buttons">
+            {% url 'account_login' as the_url %}
+            {% if request.path != the_url %}
+            <a class="button is-primary is-outlined" href="{{ the_url }}">{% trans 'Log in' %}</a>
+            {% endif %}
+
+            {% if request.site.sitecustomization.is_open_for_signup %}
+            {% url 'account_signup' as the_url %}
+            {% if request.path != the_url %}
+            <a class="button is-primary" href="{{ the_url }}">{% trans 'Signup' %}</a>
+            {% endif %}
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock page_content %}

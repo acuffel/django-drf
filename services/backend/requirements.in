@@ -1,0 +1,41 @@
+# Django
+django>=4.0.5
+
+# PostgreSQL
+psycopg2-binary
+
+# Gunicorn
+gunicorn
+
+# Celery
+celery
+django-celery-results
+
+# Auth
+django-allauth
+
+# i18n
+django-modeltranslation
+
+# Forms
+django-widget-tweaks
+
+# Debug
+django-debug-toolbar
+
+# Django REST Framework
+djangorestframework
+markdown
+django-filter
+
+# Cache
+redis
+
+# Models
+django-model-utils
+
+# Rich text
+rich
+
+# Time zone
+tzdata

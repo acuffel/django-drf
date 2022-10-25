@@ -1,0 +1,25 @@
+{% extends "openid/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}OpenID Sign In{% endblock %}
+
+{% block content %}
+
+<h1 class="title">{% trans 'OpenID Sign In' %}</h1>
+
+
+<form id="openid_login_form" class="openid_login" method="post" action="{% url 'openid_login' %}">
+{% csrf_token %}
+
+{% include "core/forms/bulma.html" %}
+
+<div class="field">
+    <div class="control">
+        <button class="button is-primary" type="submit">{% trans "Sign In" %}</button>
+    </div>
+</div>
+
+</form>
+
+{% endblock %}

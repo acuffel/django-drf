@@ -1,0 +1,103 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+
+    {% if object.author %}
+    <meta name="author" content="{% if object.author %}{{ object.author }}{% else %}{{ request.site.name }}{% endif %}">
+    {% endif %}
+
+    {% if object.description %}
+    <meta name="description" content="{% if object.description %}{{ object.description }}{% else %}{{ request.site.sitecustomization.description }}{% endif %}">
+    {% endif %}
+
+    {% if object.tags %}
+    <meta name="keywords" content="{% for tag in object.tags %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}">
+    {% endif %}
+
+    <meta name="generator" content="{{ request.site.name }}">
+
+    <meta name="publisher" content="{{ request.site.name }}">
+
+    {% block robots %}
+    <meta name="robots" content="noindex, nofollow">
+    {% endblock robots %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block head_title %}{% if object.title %}{{ object.title }} | {{ request.site.name }}{% else %}{{ request.site.name }} | {{ request.site.sitecustomization.tagline }}{% endif %}{% endblock head_title %}</title>
+
+    {% block css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        body>main {
+            flex: 1;
+        }
+
+        .sticky {
+            position: sticky;
+            top: 0;
+        }
+    </style>
+    {% endblock css %}
+
+    {% block head_js %}
+    {% endblock head_js %}
+
+    {% block extra_head %}
+    {% endblock extra_head %}
+</head>
+
+<body>
+    {% block body %}
+
+    {% block header %}
+    {% include 'core/header/base.html' %}
+    {% endblock header %}
+
+    {% block nav %}
+    {% include 'core/nav/base.html' %}
+    {% endblock nav %}
+
+    {% block tabs %}
+    {% endblock tabs %}
+
+    {% block main %}
+    <main id="main" class="section">
+        <div class="container is-fluid">
+            {% block messages %}
+            {% include 'core/messages/base.html' %}
+            {% endblock messages %}
+
+            {% block page_content %}
+            <h1 class="title">{% if object.title %}{{ object.title }}{% else %}{{ request.site.name }}{% endif %}</h1>
+            {% endblock page_content %}
+        </div>
+    </main>
+    {% endblock main %}
+
+    {% block footer %}
+    {% include 'core/footer/base.html' %}
+    {% endblock footer %}
+
+    {% endblock body %}
+
+    {% block body_js %}
+    {% endblock body_js %}
+
+    {% block extra_body %}
+    {% endblock extra_body %}
+</body>
+
+</html>

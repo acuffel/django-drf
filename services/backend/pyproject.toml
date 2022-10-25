@@ -1,0 +1,43 @@
+[tool.black]
+line-length = 88 # default
+target-version = ['py310']
+exclude = "/(migrations)/"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-rA --disable-warnings --cov=apps --cov=myapp --cov=utils"
+DJANGO_SETTINGS_MODULE = "myapp.settings"
+python_files = "tests.py test_*.py *_tests.py"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist =
+    py310-formmatters
+    py310-linters
+    py310-tests
+skipsdist = true
+
+[testenv:py310-formmatters]
+deps =
+    black
+commands =
+    black --check --diff apps myapp utils
+
+[testenv:py310-linters]
+deps =
+    flake8
+    pylint
+commands =
+    flake8 --max-line-length 88 --extend-ignore E203,W503 --exclude __pycache__,migrations apps myapp utils
+    pylint --disable C,E0401,I,R,W --ignore __pycache__,migrations apps myapp utils
+
+[testenv:py310-tests]
+passenv = *
+deps =
+    -rrequirements.txt
+    pytest-django
+    pytest-cov
+commands =
+    pytest apps myapp utils
+"""

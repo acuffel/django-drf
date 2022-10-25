@@ -1,0 +1,16 @@
+{% load i18n %}
+<div class="navbar-item">
+    <div class="buttons">
+        {% url 'account_login' as the_url %}
+        {% if request.path != the_url %}
+        <a class="button is-primary is-outlined" href="{{ the_url }}">{% trans 'Log in' %}</a>
+        {% endif %}
+
+        {% if request.site.sitecustomization.is_open_for_signup %}
+        {% url 'account_signup' as the_url %}
+        {% if request.path != the_url %}
+        <a class="button is-primary" href="{{ the_url }}">{% trans 'Signup' %}</a>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>

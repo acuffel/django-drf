@@ -1,0 +1,72 @@
+{% load i18n %}
+{% if messages %}
+{% for message in messages %}
+{% if message.level_tag == 'info' %}
+<div class="message is-info">
+    <div class="message-header">
+        <span>
+            <i class="fas fa-info-circle"></i>
+            {% trans 'Info' %}
+        </span>
+        <button class="delete"></button>
+    </div>
+    <div class="message-body">{{ message|safe }}</div>
+</div>
+{% elif message.level_tag == 'success' %}
+<div class="message is-success">
+    <div class="message-header">
+        <span>
+            <i class="fas fa-check-circle"></i>
+            {% trans 'Success' %}
+        </span>
+        <button class="delete"></button>
+    </div>
+    <div class="message-body">{{ message|safe }}</div>
+</div>
+{% elif message.level_tag == 'warning' %}
+<div class="message is-warning">
+    <div class="message-header">
+        <span>
+            <i class="fas fa-exclamation-circle"></i>
+            {% trans 'Warning' %}
+        </span>
+        <button class="delete"></button>
+    </div>
+    <div class="message-body">{{ message|safe }}</div>
+</div>
+{% elif message.level_tag == 'error' %}
+<div class="message is-danger">
+    <div class="message-header">
+        <span>
+            <i class="fas fa-exclamation-triangle"></i>
+            {% trans 'Error' %}
+        </span>
+        <button class="delete"></button>
+    </div>
+    <div class="message-body">{{ message|safe }}</div>
+</div>
+{% elif message.level_tag == 'debug' %}
+<div class="message is-warning">
+    <div class="message-header">
+        <span>
+            <i class="fas fa-bug"></i>
+            {% trans 'Debug' %}
+        </span>
+        <button class="delete"></button>
+    </div>
+    <div class="message-body">{{ message|safe }}</div>
+</div>
+{% else %}
+<div class="message is-info">
+    <div class="message-header">
+        <span>
+            <i class="fas fa-question-circle"></i>
+            {% trans 'Message' %}
+        </span>
+        <button class="delete"></button>
+    </div>
+    <div class="message-body">{{ message|safe }}</div>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}

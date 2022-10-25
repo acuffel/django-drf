@@ -1,0 +1,211 @@
+{% load widget_tweaks %}
+{% load core_extras %}
+
+{% if form.non_field_errors %}
+<ul>
+    {% for error in form.non_field_errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% for hidden_field in form.hidden_fields %}
+    {% if hidden_field.errors %}
+    <ul>
+        {% for error in hidden_field.errors %}
+        <li>(Hidden field {{ hidden_field.name }}) {{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {{ hidden_field }}
+{% endfor %}
+
+{% for field in form.visible_fields %}
+    {% with field_type=field.field.widget.input_type %}
+        {% if field|fieldtype in "DateInput,TimeInput,DateTimeInput" %}
+            <div class="field">
+                <label class="label">{{ field.label_tag }}</label>
+                <div class="control has-icons-left has-icons-right">
+                    {% if field|fieldtype == "DateInput" %}
+                        {% if field.errors %}
+                        {{ field|add_class:"input is-danger"|append_attr:"placeholder:YYYY-MM-DD" }}
+                        {% else %}
+                        {{ field|add_class:"input"|append_attr:"placeholder:YYYY-MM-DD" }}
+                        {% endif %}
+                    {% elif field|fieldtype == "TimeInput" %}
+                        {% if field.errors %}
+                        {{ field|add_class:"input is-danger"|append_attr:"placeholder:HH:MM:SS" }}
+                        {% else %}
+                        {{ field|add_class:"input"|append_attr:"placeholder:HH:MM:SS" }}
+                        {% endif %}
+                    {% elif field|fieldtype == "DateTimeInput" %}
+                        {% if field.errors %}
+                        {{ field|add_class:"input is-danger"|append_attr:"placeholder:YYYY-MM-DD HH:MM:SS" }}
+                        {% else %}
+                        {{ field|add_class:"input"|append_attr:"placeholder:YYYY-MM-DD HH:MM:SS" }}
+                        {% endif %}
+                    {% endif %}
+                    <span class="icon is-small is-left">
+                        {% if field|fieldtype == "DateInput" %}
+                            <i class="fas fa-calendar-alt"></i>
+                        {% elif field|fieldtype == "TimeInput" %}
+                            <i class="fas fa-clock"></i>
+                        {% elif field|fieldtype == "DateTimeInput" %}
+                            <span class="fa-stack">
+                                <i class="far fa-calendar fa-stack-2x"></i>
+                                <i class="fas fa-clock fa-stack-1x"></i>
+                            </span>
+                        {% endif %}
+                    </span>
+                    {% if field.errors %}
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-question"></i>
+                    </span>
+                    {% elif field.field.required %}
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-asterisk"></i>
+                    </span>
+                    {% endif %}
+                </div>
+                {% if field.errors %}
+                <p class="help is-danger">
+                    {% for error in field.errors %}
+                    {{ error }}<br>
+                    {% endfor %}
+                </p>
+                {% else %}
+                <p class="help">
+                    {{ field.help_text }}
+                </p>
+                {% endif %}
+            </div>
+        {% elif field|fieldtype == "Textarea" %}
+            <div class="field">
+                <label class="label">{{ field.label_tag }}</label>
+                <div class="control has-icons-right">
+                    {% if field.errors %}
+                        {{ field|add_class:"textarea is-danger" }}
+                    {% else %}
+                        {{ field|add_class:"textarea" }}
+                    {% endif %}
+                    {% if field.errors %}
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-question"></i>
+                    </span>
+                    {% elif field.field.required %}
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-asterisk"></i>
+                    </span>
+                    {% endif %}
+                </div>
+                {% if field.errors %}
+                <p class="help is-danger">
+                    {% for error in field.errors %}
+                    {{ error }}<br>
+                    {% endfor %}
+                </p>
+                {% else %}
+                <p class="help">
+                    {{ field.help_text }}
+                </p>
+                {% endif %}
+            </div>
+        {% elif field_type in "password,text,email" %}
+            <div class="field">
+                <label class="label">{{ field.label_tag }}</label>
+                <div class="control has-icons-left has-icons-right">
+                    {% if field.errors %}
+                    {{ field|add_class:"input is-danger" }}
+                    {% else %}
+                    {{ field|add_class:"input" }}
+                    {% endif %}
+                    <span class="icon is-small is-left">
+                        {% if field_type == "password" %}
+                        <i class="fas fa-key"></i>
+                        {% elif field_type == "email" %}
+                        <i class="fas fa-envelope"></i>
+                        {% elif field.html_name in "login,first_name,last_name,username" %}
+                        <i class="fas fa-user"></i>
+                        {% else %}
+                        <i class="fas fa-paragraph"></i>
+                        {% endif %}
+                    </span>
+                    {% if field.errors %}
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+                    {% elif field.field.required %}
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-asterisk"></i>
+                    </span>
+                    {% endif %}
+                </div>
+                {% if field.errors %}
+                <p class="help is-danger">
+                    {% for error in field.errors %}
+                    {{ error }}<br>
+                    {% endfor %}
+                </p>
+                {% else %}
+                <p class="help">
+                    {{ field.help_text }}
+                </p>
+                {% endif %}
+            </div>
+        {% elif field_type == "checkbox" %}
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  {{ field }}
+                  {{ field.label }}
+                </label>
+              </div>
+              {% if field.errors %}
+              <p class="help is-danger">
+                  {% for error in field.errors %}
+                  {{ error }}<br>
+                  {% endfor %}
+              </p>
+              {% else %}
+              <p class="help">
+                  {{ field.help_text }}
+              </p>
+              {% endif %}
+            </div>
+        {% else %}
+            <div class="field">
+                <label class="label">{{ field.label_tag }}</label>
+                <div class="control has-icons-left has-icons-right">
+                    {% if field.errors %}
+                    {{ field|add_class:"is-danger" }}
+                    {% else %}
+                    {{ field }}
+                    {% endif %}
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-key"></i>
+                    </span>
+                    {% if field.errors %}
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-question"></i>
+                    </span>
+                    {% elif field.field.required %}
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-asterisk"></i>
+                    </span>
+                    {% endif %}
+                </div>
+                {% if field.errors %}
+                <p class="help is-danger">
+                    {% for error in field.errors %}
+                    {{ error }}<br>
+                    {% endfor %}
+                </p>
+                {% else %}
+                <p class="help">
+                    {{ field.help_text }}
+                </p>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endwith %}
+{% endfor %}

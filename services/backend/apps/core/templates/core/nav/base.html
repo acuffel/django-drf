@@ -1,0 +1,62 @@
+{% load i18n %}
+<nav class="navbar has-shadow" role="navigation">
+    <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link is-arrowless">
+            <button class="button is-primary">
+                <span class="icon">
+                    <i class="fa-solid fa-bars"></i>
+                </span>
+            </button>
+        </a>
+        <div class="navbar-dropdown">
+            {% for menu_item in main_menu_items %}
+            <a class="navbar-item{% if request.path == menu_item.url %} is-active{% endif %}" href="{{ menu_item.url }}">
+                <span class="icon mr-1">
+                    <i class="{{ menu_item.icon }}"></i>
+                </span>
+                <span>{{ menu_item.title }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="navbar-brand">
+        <a href="{% url 'core:home' %}" class="navbar-item">
+            <span class="icon is-small has-text-warning">
+                <i class="fa-solid fa-xs fa-circle"></i>
+            </span>
+            <span class="icon is-small has-text-link">
+                <i class="fa-solid fa-xs fa-circle"></i>
+            </span>
+            <span class="icon is-small has-text-primary">
+                <i class="fa-solid fa-xs fa-circle"></i>
+            </span>
+        </a>
+    </div>
+
+    <div class="navbar-menu is-active">
+        <div class="navbar-start">
+            <div class="navbar-item">
+                <span class="is-uppercase has-text-weight-bold">
+                    {% if object.title %}{{ object.title }}{% else %}{{ request.site.name }}{% endif %}
+                </span>
+            </div>
+        </div>
+
+        <div class="navbar-end">
+            {% include 'core/nav/lang.html' %}
+
+            <a href="{% url 'api-root' %}" class="navbar-item has-text-primary" title="API">
+                <span class="icon">
+                    <i class="fa-solid fa-database"></i>
+                </span>
+            </a>
+
+            {% if user.is_authenticated %}
+            {% include 'core/nav/accounts_menu.html' %}
+            {% else %}
+            {% include 'core/nav/login_buttons.html' %}
+            {% endif %}
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,31 @@
+{% load i18n %}
+<div class="navbar-item has-dropdown is-hoverable">
+    <a class="navbar-link is-arrowless has-text-primary">
+        {% if user.get_avatar_url %}
+        <figure class="image is-24x24">
+            <img class="is-rounded" src="{{ user.get_avatar_url }}">
+        </figure>
+        {% else %}
+        <span class="icon">
+            <i class="fa-solid fa-user"></i>
+        </span>
+        {% endif %}
+    </a>
+    <div class="navbar-dropdown is-right">
+        {% if user.is_staff %}
+        <a class="navbar-item" href="{% url 'admin:index' %}">{% trans 'Admin' %}</a>
+        <hr class="navbar-divider">
+        {% endif %}
+        {% url 'accounts:profile' as the_url %}
+        <a class="navbar-item" href="{{ the_url }}">{% trans 'Profile of' %} {{ user }}</a>
+        {% url 'account_email' as the_url %}
+        <a class="navbar-item{% if request.path == the_url %} is-active{% endif %}" href="{{ the_url }}">{% trans 'E-mail Addresses' %}</a>
+        {% url 'socialaccount_connections' as the_url %}
+        <a class="navbar-item{% if request.path == the_url %} is-active{% endif %}" href="{{ the_url }}">{% trans 'Account Connections' %}</a>
+        {% url 'account_change_password' as the_url %}
+        <a class="navbar-item{% if request.path == the_url %} is-active{% endif %}" href="{{ the_url }}">{% trans 'Change my password' %}</a>
+        <hr class="navbar-divider">
+        {% url 'account_logout' as the_url %}
+        <a class="navbar-item{% if request.path == the_url %} is-active{% endif %}" href="{{ the_url }}">{% trans 'Sign Out' %}</a>
+    </div>
+</div>

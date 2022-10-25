@@ -1,0 +1,259 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-08 09:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: admin/base.py:24 admin/base.py:99
+msgid "generic fields"
+msgstr ""
+
+#: admin/base.py:41
+msgid "specific fields"
+msgstr ""
+
+#: admin/base.py:110
+msgid "history fields"
+msgstr ""
+
+#: apps.py:7
+msgid "Core app"
+msgstr ""
+
+#: models/base.py:18
+msgid "owner"
+msgstr ""
+
+#: models/base.py:20
+msgid ""
+"The owner of this very object. By default it's the creator of the object."
+msgstr ""
+
+#: models/base.py:27
+msgid "creation date"
+msgstr ""
+
+#: models/base.py:28
+msgid "When was this object created?"
+msgstr ""
+
+#: models/base.py:33
+msgid "last modification date"
+msgstr ""
+
+#: models/base.py:34
+msgid "When was this object last modified?"
+msgstr ""
+
+#: models/base.py:43
+msgid "last editor"
+msgstr ""
+
+#: models/base.py:44
+msgid "Who last modified this object?"
+msgstr ""
+
+#: models/factory.py:11 models/mixins/factory.py:15
+msgid "factory"
+msgstr ""
+
+#: models/factory.py:12
+msgid "factories"
+msgstr ""
+
+#: models/mixins/fasta.py:39 models/mixins/gff3.py:39 models/mixins/vcf.py:39
+msgid "File not supported!"
+msgstr ""
+
+#: models/mixins/fasta.py:49
+msgid "FASTA file"
+msgstr ""
+
+#: models/mixins/gff3.py:49
+msgid "GFF3 file"
+msgstr ""
+
+#: models/mixins/vcf.py:49
+msgid "VCF file"
+msgstr ""
+
+#: models/site.py:13
+msgid "site"
+msgstr "site"
+
+#: models/site.py:17
+msgid "is open for signup"
+msgstr "ouvert aux nouvelles inscriptions"
+
+#: models/site.py:23
+msgid "tagline"
+msgstr "slogan"
+
+#: models/site.py:24
+msgid "A few words to describe this very website."
+msgstr "Quelques mots pour décrire ce site."
+
+#: models/site.py:31
+msgid "description"
+msgstr "description"
+
+#: models/site.py:32 models/site.py:33
+msgid "A short text to describe this very website."
+msgstr "Un court texte pour décrire ce site."
+
+#: models/site.py:37
+msgid "site customization"
+msgstr "personnalisation de site"
+
+#: models/site.py:38
+msgid "site customizations"
+msgstr "personnalisations de site"
+
+#: models/site.py:42
+msgid "unknown"
+msgstr "inconnu"
+
+#: templates/core/documentation/base.html:3
+msgid "help"
+msgstr ""
+
+#: templates/core/documentation/base.html:4
+msgid "documentation"
+msgstr ""
+
+#: templates/core/footer/base.html:11
+msgid "by"
+msgstr "par"
+
+#: templates/core/footer/base.html:13
+msgid "and"
+msgstr "et"
+
+#: templates/core/footer/base.html:14
+msgid "many contributors"
+msgstr "de nombreux contributeurs"
+
+#: templates/core/footer/base.html:15
+msgid "The source code is licensed"
+msgstr "Le code source est placé sous licence"
+
+#: templates/core/forms/search.html:4
+msgid "Search"
+msgstr "Rechercher"
+
+#: templates/core/messages/base.html:10
+msgid "Info"
+msgstr "Info"
+
+#: templates/core/messages/base.html:21
+msgid "Success"
+msgstr "Succès"
+
+#: templates/core/messages/base.html:32
+msgid "Warning"
+msgstr "Attention"
+
+#: templates/core/messages/base.html:43
+msgid "Error"
+msgstr "Erreur"
+
+#: templates/core/messages/base.html:54
+msgid "Debug"
+msgstr "Debug"
+
+#: templates/core/messages/base.html:65
+msgid "Message"
+msgstr "Message"
+
+#: templates/core/nav/accounts_menu.html:16
+msgid "Admin"
+msgstr "Administration"
+
+#: templates/core/nav/accounts_menu.html:20
+msgid "Profile of"
+msgstr "Profil de"
+
+#: templates/core/nav/accounts_menu.html:22
+msgid "E-mail Addresses"
+msgstr "Adresses e-mail"
+
+#: templates/core/nav/accounts_menu.html:24
+msgid "Account Connections"
+msgstr "Comptes associés"
+
+#: templates/core/nav/accounts_menu.html:26
+msgid "Change my password"
+msgstr "Modifier mon mot de passe"
+
+#: templates/core/nav/accounts_menu.html:29
+#: templates/core/nav/logout_button.html:6
+msgid "Sign Out"
+msgstr "Se Déconnecter"
+
+#: templates/core/nav/login_buttons.html:6
+msgid "Log in"
+msgstr "Connexion"
+
+#: templates/core/nav/login_buttons.html:12
+msgid "Signup"
+msgstr "Inscription"
+
+#: templates/core/sidebar/base.html:11
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: templates/core/sidebar/base.html:8
+msgid "Analysis"
+msgstr "Analyse"
+
+#: templates/core/sidebar/base.html:11
+msgid "Projects"
+msgstr "Projets"
+
+#: templates/core/sidebar/base.html:14
+msgid "Patients"
+msgstr "Patients"
+
+#: templates/core/sidebar/base.html:17
+msgid "Filters"
+msgstr "Filtres"
+
+#: templates/core/sidebar/base.html:20
+msgid "Help"
+msgstr "Assistance"
+
+#: validators.py:8
+msgid ""
+"Enter a valid username. This value may contain only letters, numbers, and _ "
+"character."
+msgstr ""
+
+#: views/base.py:12
+msgid "Home"
+msgstr "Accueil"
+
+#~ msgid "Loading..."
+#~ msgstr "Chargement ..."
+
+#~ msgid "Please wait a few seconds"
+#~ msgstr "Veuillez patienter quelques secondes"
+
+#~ msgid "Users"
+#~ msgstr "Utilisateurs"
+
+#~ msgid "API"
+#~ msgstr "API"
