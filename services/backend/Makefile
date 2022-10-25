@@ -37,14 +37,6 @@ migrations: ## Creates new migrations based on the changes detected to your mode
 migrate: ## Synchronizes the database state with the current set of models and migrations.
 	venv/bin/python manage.py migrate
 
-.PHONY: populate-db
-populate-db: ## Populates the database with initial values.
-	venv/bin/python manage.py populate_db
-	
-.PHONY: load-catalog
-load-catalog: ## Populates the database with initial values.
-	venv/bin/python manage.py load_catalog
-
 .PHONY: createsuperuser
 createsuperuser: ## Creates a default superuser.
 	venv/bin/python manage.py createsuperuser --no-input; exit 0

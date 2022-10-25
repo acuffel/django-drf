@@ -5,7 +5,6 @@ x-reverse-proxy-env:
   NGINX_HOST: "${APP_DOMAIN}"
   NGINX_PORT: "80"
   NGINX_CLIENT_MAX_BODY_SIZE: "${NGINX_CLIENT_MAX_BODY_SIZE}"
-  BIODB_ROOT: "/www/biodb/"
   MEDIA_ROOT: "/www/media/"
   STATIC_ROOT: "/www/static/"
 
@@ -26,8 +25,6 @@ x-core-env:
   DJANGO_SUPERUSER_USERNAME: "${DJANGO_SUPERUSER_USERNAME}"
   DJANGO_SUPERUSER_PASSWORD: "${DJANGO_SUPERUSER_PASSWORD}"
   DJANGO_SUPERUSER_EMAIL: "${DJANGO_SUPERUSER_EMAIL}"
-  ENSEMBL_VEP_VERSION: "${ENSEMBL_VEP_BRANCH}"
-  VT_VERSION: "${VT_BRANCH}"
 
 x-postgres-env:
   &postgres-env
@@ -54,7 +51,6 @@ services:
   reverse-proxy:
     image: nginx:${NGINX_VERSION}-alpine
     volumes:
-      - biodb-data:/www/biodb:ro
       - core-media:/www/media:ro
       - core-static:/www/static:ro
       - ./services/reverse-proxy/nginx/templates:/etc/nginx/templates:ro
@@ -69,7 +65,6 @@ services:
   core:
     image: ${CORE_DOCKER_IMAGE_NAME}:${CORE_DOCKER_IMAGE_VERSION}
     volumes:
-      - biodb-data:/code/services/backend/biodb:ro
       - core-media:/code/services/backend/media
       - core-static:/code/services/backend/static
     environment:
@@ -95,7 +90,6 @@ services:
   core-worker-gateway:
     image: ${CORE_DOCKER_IMAGE_NAME}:${CORE_DOCKER_IMAGE_VERSION}
     volumes:
-      - biodb-data:/code/services/backend/biodb:ro
       - core-media:/code/services/backend/media
     environment:
       <<: *core-env
@@ -118,7 +112,6 @@ services:
   core-worker-computation:
     image: ${CORE_DOCKER_IMAGE_NAME}:${CORE_DOCKER_IMAGE_VERSION}
     volumes:
-      - biodb-data:/code/services/backend/biodb:ro
       - core-media:/code/services/backend/media
     environment:
       <<: *core-env

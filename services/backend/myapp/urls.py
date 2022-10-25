@@ -5,17 +5,12 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 
-URL_APP_LIST = [
-    "annotations",
-    "assemblies",
-]
+URL_APP_LIST = []
 
 API_PREFIX = "api/v1/vep106/"
 
 API_APP_LIST = [
     "accounts",
-    "annotations",
-    "assemblies",
 ]
 
 class DiaghoVepAPIRoot(APIView):

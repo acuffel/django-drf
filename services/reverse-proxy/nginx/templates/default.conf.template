@@ -11,10 +11,6 @@ server {
         proxy_pass http://core:8000;
     }
 
-    location /biodb/ {
-        alias ${BIODB_ROOT};
-    }
-
     location /static/ {
         alias ${STATIC_ROOT};
     }

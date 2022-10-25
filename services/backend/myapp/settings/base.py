@@ -62,9 +62,6 @@ INSTALLED_APPS = [
     "corsheaders",
     # Core apps
     "core.apps.CoreConfig",
-    "assemblies.apps.AssembliesConfig",
-    "annotations.apps.AnnotationsConfig",
-    "vep.apps.VEPConfig",
 ]
 
 # Middewares
@@ -163,10 +160,6 @@ STATIC_ROOT = BASE_DIR / "static"
 # Media files
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
-
-# Bio db files
-BIODB_URL = "/biodb/"
-BIODB_ROOT = BASE_DIR / "biodb"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
